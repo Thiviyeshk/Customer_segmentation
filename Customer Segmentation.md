@@ -182,6 +182,16 @@ Customers are grouped into segments based on behavior and value.
 
 \* Supports personalized marketing strategies
 
+## 📸 Dashboard Preview
+
+![Customer Segmentation Dashboard](customer_segment.png)
+
+---
+
+## 🎥 Demo Video
+
+[Watch Demo](customer_segment.mp4)
+
 
 
 ###### **How to Run**
