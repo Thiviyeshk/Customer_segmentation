@@ -160,15 +160,6 @@ Customers are grouped into segments based on behavior and value.
 
 \* Optimize budget allocation across segments
 
-###### 
-
-###### **Dashboard Preview**
-
-
-
-(Add your screenshot here)
-
-
 
 ###### **Business Impact**
 
