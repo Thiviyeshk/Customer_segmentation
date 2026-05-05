@@ -1,0 +1,63 @@
+import pandas as pd
+import numpy as np
+import seaborn as sns
+import matplotlib as plt
+from sklearn.cluster import KMeans
+from sklearn.preprocessing import StandardScaler
+df = pd.read_csv("mall_customer.csv")
+df.head(10)
+df.info()
+df.describe()
+df.isnull().sum()
+df.duplicated().sum()
+df.drop_duplicates(inplace=True)
+df = df.dropna()
+df.isnull().sum()
+df.info()
+df.describe()
+sns.histplot(df['Age'],bins=20)
+plt.show()
+import matplotlib.pyplot as plt
+sns.histplot(df['Age'],bins=20)
+plt.show()
+sns.histplot(df['Annual Income (k$)'])
+plt.show()
+
+sns.histplot(df['Spending Score (1-100)'])
+plt.show()
+sns.scatterplot(x='Annual Income (k$)', y ='Spending Score (1-100)', data=df)
+plt.show()
+X = df[['Annual Income (k$)', 'Spending Score (1-100)']]
+
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(X)
+
+
+wcss = []
+for i in range(1,11):
+    kmeans = KMeans(n_clusters=i)
+    kmeans.fit(X_scaled)
+    wcss.append(kmeans.inertia_)
+
+plt.plot(range(1,11), wcss)
+plt.xlabel("Number of Clusters")
+plt.ylabel("WCSS")
+plt.show()
+
+kmeans = KMeans(n_clusters=5)
+df['Cluster'] = kmeans.fit_predict(X_scaled)
+
+plt.scatter(df['Annual Income (k$)'],
+            df['Spending Score (1-100)'],
+            c=df['Cluster'])
+plt.xlabel("Income")
+plt.ylabel("Spending Score")
+plt.title("customer Segmentation")
+plt.show()
+
+df.to_csv("customer_segments.csv", index=False)
+
+
+
+
+
